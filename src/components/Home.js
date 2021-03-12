@@ -7,6 +7,7 @@ import {Styles} from '../styles/HomeStyles';
 import SpinView from './common/SpinView';
 import UserList from './UserList';
 import {monthNames} from '../constant/strings';
+import { ScrollView } from 'react-native-gesture-handler';
 
 class Home extends Component {
     constructor(props) {
@@ -82,16 +83,18 @@ class Home extends Component {
                     inputContainerStyle={Styles.inputContainerStyle}
                     inputStyle={Styles.inputStyle}
                 />
-                {data.filter((val)=>{
-                    if(search===''){
-                        return val;
-                    }
-                    else if(val.user.name.toLowerCase().includes(search.toLowerCase())){
-                        return val;
-                    }
-                }).map((value,index)=>(
-                    <UserList navigation={this.props.navigation} key={index} item ={value}/>
-                ))}
+                <ScrollView>
+                    {data.filter((val)=>{
+                        if(search===''){
+                            return val;
+                        }
+                        else if(val.user.name.toLowerCase().includes(search.toLowerCase())){
+                            return val;
+                        }
+                    }).map((value,index)=>(
+                        <UserList navigation={this.props.navigation} key={index} item ={value}/>
+                    ))}
+                </ScrollView>
                 
             </View>
           
