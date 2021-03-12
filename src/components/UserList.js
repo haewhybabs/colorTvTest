@@ -6,11 +6,11 @@ class UserList extends Component {
         super(props)
 
         this.state = {
-            
         }
     }
 
     render() {
+        const {item}=this.props
         return (
             <View style={Styles.card}>
                 <View style={Styles.cardContainer}>
@@ -19,11 +19,11 @@ class UserList extends Component {
                     style={Styles.ThumbNailCard}      
                     />
                     <View style={Styles.cardTitle}>
-                        <Text style={Styles.cardTextTitle}>Ayobami Babalola</Text>
-                        <Text> Haewhydev</Text>
+                        <Text style={Styles.cardTextTitle}>{item.user.name}</Text>
+                        <Text> {item.user.username}</Text>
                     </View>
 
-                    <TouchableOpacity style={Styles.viewUser} onPress={()=>this.props.navigation.navigate('User')}>
+                    <TouchableOpacity style={Styles.viewUser} onPress={()=>this.props.navigation.navigate('User',{item})}>
                         <View style={Styles.viewUserContainer}>
                             <Text style={Styles.viewUserText}>View</Text>
                         </View>

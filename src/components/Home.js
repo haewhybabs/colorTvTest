@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import {View,Text,StatusBar,Image,TouchableOpacity} from 'react-native';
-import { Input, Icon,SearchBar } from 'react-native-elements';
+import { SearchBar } from 'react-native-elements';
+import {url} from '../constant/strings';
+import {clientID} from '../constant/strings';
 import {Styles} from '../styles/HomeStyles';
+import SpinView from './common/SpinView';
 import UserList from './UserList';
 import {monthNames} from '../constant/strings';
 
@@ -10,18 +13,48 @@ class Home extends Component {
         super(props)
 
         this.state = {
-            search: ''
+            search:'',
+            isLoading:true,
+            data:[]
         }
+    }
+
+    componentDidMount(){
+        this.fetchServerUrl();
     }
 
     updateSearch = (search) => {
         this.setState({ search });
     };
 
+    fetchServerUrl(){
+    
+        fetch(url,{
+          method:'GET',
+        })
+        .then(response=>{
+            return response.json();
+        })
+        .then((contents)=>{
+
+            this.setState({data:contents,isLoading:false})
+        })
+        .catch((err)=>{
+         
+          setTimeout(()=>{
+            this.fetchServerUrl();
+          },1000)
+        })
+    }
+
     render() {
-        let {search} = this.state;
+        let {search,isLoading,data} = this.state;
         const d = new Date();
         const todayDate = monthNames[d.getMonth()] + ' '+ d.getDate();
+
+        if (isLoading) {
+            return <SpinView />;
+        }
 
         return (  
             <View style={Styles.container}>
@@ -49,7 +82,17 @@ class Home extends Component {
                     inputContainerStyle={Styles.inputContainerStyle}
                     inputStyle={Styles.inputStyle}
                 />
-                <UserList navigation={this.props.navigation}/>
+                {data.filter((val)=>{
+                    if(search===''){
+                        return val;
+                    }
+                    else if(val.user.name.toLowerCase().includes(search.toLowerCase())){
+                        return val;
+                    }
+                }).map((value,index)=>(
+                    <UserList navigation={this.props.navigation} key={index} item ={value}/>
+                ))}
+                
             </View>
           
         )

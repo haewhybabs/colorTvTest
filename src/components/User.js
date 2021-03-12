@@ -9,6 +9,7 @@ class User extends Component {
         super(props)
 
         this.state = {
+            item:props.navigation.getParam('item'),
             images: [
                 "https://source.unsplash.com/1024x768/?nature",
                 "https://source.unsplash.com/1024x768/?water",
@@ -19,9 +20,20 @@ class User extends Component {
     }
 
     render() {
+        const {item} =this.state;
+        let images = null;
+        console.log('item',item.urls)
+        if(item){
+            images = [
+                item.urls.raw,
+                item.urls.full,
+                item.urls.regular
+            ]
+        }
+
         return (
             <View>
-                <SliderBox images={this.state.images} />
+                <SliderBox images={images} />
                 <View style={Styles.cardContainer}>
 
                     <Card style={{marginTop:10}}>
@@ -29,7 +41,7 @@ class User extends Component {
                             <Icon active name="person" color='red' />
                             <Text>Full Name</Text>
                             <Right>
-                                <Text>Ayobami Babalola</Text>
+                                <Text>{item.user.name}</Text>
                             </Right>
                         </CardItem>
                     </Card>
@@ -38,25 +50,25 @@ class User extends Component {
                             <Icon active name="person" color='red' />
                             <Text>User Name</Text>
                             <Right>
-                                <Text>Haewhydev</Text>
+                                <Text>{item.user.username}</Text>
                             </Right>
                         </CardItem>
                     </Card>
                     <Card style={{marginTop:10}}>
                         <CardItem>
-                            <Icon name="phone" color='red' />
-                            <Text>Phone Number</Text>
+                            <Icon name="person" color='red' />
+                            <Text>Instagram</Text>
                             <Right>
-                                <Text>08135373563</Text>
+                                <Text>{item.user.instagram_username}</Text>
                             </Right>
                         </CardItem>
                     </Card>
                     <Card style={{marginTop:10}}>
                         <CardItem>
-                            <Icon name="map"  color='red'/>
-                            <Text>Address</Text>
+                            <Icon name="person"  color='red'/>
+                            <Text>Twitter</Text>
                             <Right>
-                                <Text>Lagos </Text>
+                                <Text>{item.user.twitter_username}</Text>
                             </Right>
                         </CardItem>
                     </Card>
