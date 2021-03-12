@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {View,Text,StatusBar,Image,TouchableOpacity} from 'react-native';
 import { Input, Icon,SearchBar } from 'react-native-elements';
 import {Styles} from '../styles/HomeStyles';
+import UserList from './UserList';
 import {monthNames} from '../constant/strings';
 
 class Home extends Component {
@@ -48,82 +49,7 @@ class Home extends Component {
                     inputContainerStyle={Styles.inputContainerStyle}
                     inputStyle={Styles.inputStyle}
                 />
-
-                
-                <View style={Styles.card}>
-                    <View style={Styles.cardContainer}>
-                        <Image
-                        source = {require('../assets/noImageRed.jpg')}                         
-                        style={Styles.ThumbNailCard}      
-                        />
-                        <View style={Styles.cardTitle}>
-                            <Text style={Styles.cardTextTitle}>Ayobami Babalola</Text>
-                            <Text> Haewhydev</Text>
-                        </View>
-
-                        <TouchableOpacity style={Styles.viewUser}>
-                            <View style={Styles.viewUserContainer}>
-                                <Text style={Styles.viewUserText}>View</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-
-                <View style={Styles.card}>
-                    <View style={Styles.cardContainer}>
-                        <Image
-                        source = {require('../assets/noImageRed.jpg')}                         
-                        style={Styles.ThumbNailCard}      
-                        />
-                        <View style={Styles.cardTitle}>
-                            <Text style={Styles.cardTextTitle}>Ayobami Babalola</Text>
-                            <Text> Haewhydev</Text>
-                        </View>
-
-                        <TouchableOpacity style={Styles.viewUser}>
-                            <View style={Styles.viewUserContainer}>
-                                <Text style={Styles.viewUserText}>View</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <View style={Styles.card}>
-                    <View style={Styles.cardContainer}>
-                        <Image
-                        source = {require('../assets/noImageRed.jpg')}                         
-                        style={Styles.ThumbNailCard}      
-                        />
-                        <View style={Styles.cardTitle}>
-                            <Text style={Styles.cardTextTitle}>Ayobami Babalola</Text>
-                            <Text> Haewhydev</Text>
-                        </View>
-
-                        <TouchableOpacity style={Styles.viewUser}>
-                            <View style={Styles.viewUserContainer}>
-                                <Text style={Styles.viewUserText}>View</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-
-                <View style={Styles.card}>
-                    <View style={Styles.cardContainer}>
-                        <Image
-                        source = {require('../assets/noImageRed.jpg')}                         
-                        style={Styles.ThumbNailCard}      
-                        />
-                        <View style={Styles.cardTitle}>
-                            <Text style={Styles.cardTextTitle}>Ayobami Babalola</Text>
-                            <Text> Haewhydev</Text>
-                        </View>
-
-                        <TouchableOpacity style={Styles.viewUser}>
-                            <View style={Styles.viewUserContainer}>
-                                <Text style={Styles.viewUserText}>View</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                <UserList navigation={this.props.navigation}/>
             </View>
           
         )
