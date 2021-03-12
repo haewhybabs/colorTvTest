@@ -1,6 +1,15 @@
+/**
+ * Color Tv React Native App Test
+ * https://github.com/haewhybabs/colorTvTest
+ * Author : Ayobami Babalola
+ */
+ import React,{Component} from 'react';
+import { createAppContainer } from 'react-navigation';
+import { switchNavigator } from './src/navigation/switchNavigator';
 
-import React,{Component} from 'react';
-import {View,Text} from 'react-native';
+const AppNav = createAppContainer(switchNavigator);
+
+
 
 class App extends Component {
   constructor(props) {
@@ -13,9 +22,7 @@ class App extends Component {
 
   render() {
     return (
-      <View>
-        <Text>App </Text>
-      </View>
+      <AppNav />
     )
   }
 }
