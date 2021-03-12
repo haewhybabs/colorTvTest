@@ -15,7 +15,7 @@ class UserList extends Component {
             <View style={Styles.card}>
                 <View style={Styles.cardContainer}>
                     <Image
-                    source = {require('../assets/noImageRed.jpg')}                         
+                    source = {{uri:item.urls.raw}}                         
                     style={Styles.ThumbNailCard}      
                     />
                     <View style={Styles.cardTitle}>
